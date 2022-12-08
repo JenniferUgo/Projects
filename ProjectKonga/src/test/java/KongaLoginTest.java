@@ -21,7 +21,7 @@ public class KongaLoginTest {
         driver.get("https://konga.com");
         //3. Maximize window
         driver.manage().window().maximize();
-        Thread.sleep(4000);
+        Thread.sleep(5000);
 
         //Test 1. Verify that the user has input the right url and is on the right webpage
         String expectedUrl = "https://konga.com";
@@ -48,7 +48,7 @@ public class KongaLoginTest {
             System.out.println("Page Title Not Found");
         }
         pageTitle.getText();
-        Thread.sleep(4000);
+        Thread.sleep(5000);
     }
 
     //5. Click on the Login/Signup button
@@ -68,7 +68,7 @@ public class KongaLoginTest {
             System.out.println("Not Login Page");
         }
         //pageItemTitle.getText();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
     }
 
     @Test(priority = 1)
@@ -76,7 +76,7 @@ public class KongaLoginTest {
         String loginPage = "https://www.konga.com";
 
         //6. Locate the Email Address or Phone Number field and Input your email address
-        driver.findElement(By.id("username")).sendKeys("jennifer@junndigitalcom");
+        driver.findElement(By.id("username")).sendKeys("junn@com");
         //7. Locate the password field and Input your password
         driver.findElement(By.id("password")).sendKeys(" @Testify01");
         //8. Click on the Login button to submit
@@ -84,7 +84,7 @@ public class KongaLoginTest {
         Thread.sleep(3000);
 
         //Test 4. Verify that user cannot log in with invalid email address
-        // Verifying if an error message is displayed
+                 // Verifying if an error message is displayed
         WebElement emailValidation = driver.findElement(By.id("username"));
         String actualValidationErrorMessage = emailValidation.getAttribute("validationMessage");
         if (emailValidation.isDisplayed()) {
@@ -94,9 +94,8 @@ public class KongaLoginTest {
         }
     }
 
-
     @Test(priority = 2)
-    public void positiveLogin() throws InterruptedException {
+    public void negativeLoginInvalidPassword() throws InterruptedException {
         String loginPage = "https://www.konga.com";
 //       if (driver.getCurrentUrl().equals(loginPage)) {
 //            //Refresh the page to reset all input fields
@@ -105,18 +104,109 @@ public class KongaLoginTest {
 //            driver.navigate().to(loginPage);
 //        }
         //6. Locate the Email Address or Phone Number field and Input your email address
+        WebElement usernameField = driver.findElement(By.id("username"));
+        usernameField.clear();
+        usernameField.sendKeys("junn@gmail.com");
+        //7. Locate the password field and Input your password
+        WebElement passwordField = driver.findElement(By.id("password"));
+        passwordField.clear();
+        passwordField.sendKeys("@");
+        //8. Click on the Login button to submit
+        driver.findElement(By.xpath("//section/aside/div[2]/div/form/div[3]/button")).click();
+        Thread.sleep(3000);
+
+        //Test 5. Verify that user cannot log in with invalid password
+                 // Verifying if an error message is displayed
+        WebElement passwordValidation = driver.findElement(By.id("password"));
+        String actualValidationErrorMessage = passwordValidation.getAttribute("validationMessage");
+        if (passwordValidation.isDisplayed()) {
+            System.out.println("Login failed");
+        } else {
+            System.out.println("Login successful");
+        }
+    }
+
+    @Test(priority = 3)
+    public void negativeLoginEmptyField() throws InterruptedException {
+        String loginPage = "https://www.konga.com";
+
+        //6. Locate the Email Address or Phone Number field and Input your email address
+        WebElement usernameField = driver.findElement(By.id("username"));
+        usernameField.clear();
+        usernameField.sendKeys("");
+        //7. Locate the password field and Input your password
+        WebElement passwordField = driver.findElement(By.id("password"));
+        passwordField.clear();
+        passwordField.sendKeys("@Testify01");
+        //8. Click on the Login button to submit
+        driver.findElement(By.xpath("//section/aside/div[2]/div/form/div[3]/button")).click();
+        Thread.sleep(3000);
+
+        //Test 6. Verify that user cannot log in with an empty field
+                 // Verifying if an error message is displayed
+        WebElement emailValidation = driver.findElement(By.id("username"));
+        String actualValidationErrorMessage = emailValidation.getAttribute("validationMessage");
+        if (emailValidation.isDisplayed()) {
+            System.out.println("Login failed");
+        } else {
+            System.out.println("Login successful");
+        }
+    }
+
+    @Test(priority = 4)
+    public void negativeLoginEmptyFields() throws InterruptedException {
+        String loginPage = "https://www.konga.com";
+
+        //6. Locate the Email Address or Phone Number field and Input your email address
+        WebElement usernameField = driver.findElement(By.id("username"));
+        usernameField.clear();
+        usernameField.sendKeys("");
+        //7. Locate the password field and Input your password
+        WebElement passwordField = driver.findElement(By.id("password"));
+        passwordField.clear();
+        passwordField.sendKeys("");
+        //8. Click on the Login button to submit
+        driver.findElement(By.xpath("//section/aside/div[2]/div/form/div[3]/button")).click();
+        Thread.sleep(3000);
+
+        //Test 7. Verify that user cannot log in with both fields empty
+               // Verifying if an error message is displayed
+        WebElement emailValidation = driver.findElement(By.id("username"));
+
+
+        String actualValidationErrorMessage = emailValidation.getAttribute("validationMessage");
+        if (emailValidation.isDisplayed()) {
+            System.out.println("Login failed");
+        } else {
+            System.out.println("Login successful");
+        }
+
+        WebElement passwordValidation = driver.findElement(By.id("password"));
+        String actualPasswordValidationErrorMessage = passwordValidation.getAttribute("validationMessage");
+        if (passwordValidation.isDisplayed()) {
+            System.out.println("Login Failed");
+        } else  {
+            System.out.println("Login Successful");
+        }
+    }
+
+        @Test(priority = 5)
+    public void positiveLogin() throws InterruptedException {
+        String loginPage = "https://www.konga.com";
+
+        //6. Locate the Email Address or Phone Number field and Input your email address
        WebElement usernameField = driver.findElement(By.id("username"));
                usernameField.clear();
                usernameField.sendKeys("junninc@gmail.com");
         //7. Locate the password field and Input your password
         WebElement passwordField = driver.findElement(By.id("password"));
                passwordField.clear();
-               passwordField.sendKeys("@Testify01");
+               passwordField.sendKeys(*********);
         //8. Click on the Login button to submit
         driver.findElement(By.xpath("//section/aside/div[2]/div/form/div[3]/button")).click();
         Thread.sleep(3000);
 
-        //Test 5. Verify that user can log in with valid email address and password
+        //Test 8. Verify that user can log in with valid email address and password
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://www.konga.com/";
         if (expectedURL.equals(actualURL)) {
@@ -127,40 +217,79 @@ public class KongaLoginTest {
         Thread.sleep(3000);
     }
 
-
-   @Test(priority = 3)
-    public void searchItem() throws InterruptedException {
+    @Test(priority = 6)
+    public void searchElement() throws InterruptedException {
 
         WebElement searchedItem = driver.findElement(By.xpath("//div[1]/div/div/div[4]/div/a/span"));
 
-        //Test 9.Verify that the item searched for is present.
+        //Test 9. Verify that the user logged in successfully.
         String expectedItemName = "My Account";
         String actualItemName = searchedItem.getText();
         if (expectedItemName.equals(actualItemName)){
-            System.out.println("My Account is present");
+            System.out.println("My Account is clickable");
         } else {
-            System.out.println("My Account is not present");
+            System.out.println("My Account is not clickable");
         }
 
         //Click on the searched Item to view its content
         searchedItem.click();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
     }
 
-    @Test (priority = 4)
-    public void logoutSuccessfully() {
 
-      WebElement searchedItem = driver.findElement(By.xpath("//div[1]/div/div/div[4]/div/ul/li[7]/a"));
+   @Test(priority = 7)
+    public void searchTitle() throws InterruptedException {
 
-        //Test 10. Verify that logout link /button is present
-        String expectedItemName = "Logout";
+        WebElement searchedItem = driver.findElement(By.xpath("//div[1]/div/h1"));
+
+        //Test 10. Verify that the item searched for is present.
+        String expectedItemName = "Account Information";
         String actualItemName = searchedItem.getText();
         if (expectedItemName.equals(actualItemName)){
-            System.out.println("Logged Out");
+            System.out.println("Account Info is present");
         } else {
-            System.out.println("Not Logged Out");
+            System.out.println("Account Info is not present");
         }
+
+        //Click on the searched Item to view its content
+        searchedItem.getText();
+        Thread.sleep(5000);
+    }
+
+    @Test(priority = 8)
+    public void searchItem() throws InterruptedException {
+
+        WebElement searchedItem = driver.findElement(By.xpath("//div[1]/div/div/div[4]/div/a/span"));
+
+        //Test 9. Verify that the user can log out.
+        String expectedItemName = "My Account";
+        String actualItemName = searchedItem.getText();
+        if (expectedItemName.equals(actualItemName)){
+            System.out.println("My Account is clickable");
+        } else {
+            System.out.println("My Account is not clickable");
+        }
+
+        //Click on the searched Item to view its content
         searchedItem.click();
+        Thread.sleep(5000);
+       // WebElement logoutButton = driver.findElement(By.xpath("//div[1]/div/div/div[4]/div/ul/li[7]/a")).click();
+    }
+
+    @Test (priority = 9)
+    public void logoutSuccessfully() throws InterruptedException {
+       driver.findElement(By.xpath("//div[1]/div/div/div[4]/div/ul/li[7]/a")).click();
+
+        String expectedUrl = "https://konga.com";
+        //Test 10. Verify that the user has logged out successfully
+        if (driver.getCurrentUrl().equals(expectedUrl)) {
+            //pass
+            System.out.println("Not Logged Out");
+        } else {
+            //fail
+            System.out.println("Logged Out Successfully");
+        }
+        Thread.sleep(5000);
     }
 
     @AfterTest
