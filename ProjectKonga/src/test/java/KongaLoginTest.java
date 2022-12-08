@@ -78,7 +78,7 @@ public class KongaLoginTest {
         //6. Locate the Email Address or Phone Number field and Input your email address
         driver.findElement(By.id("username")).sendKeys("junn@com");
         //7. Locate the password field and Input your password
-        driver.findElement(By.id("password")).sendKeys(" @Testify01");
+        driver.findElement(By.id("password")).sendKeys(" @Test01");
         //8. Click on the Login button to submit
         driver.findElement(By.xpath("//section/aside/div[2]/div/form/div[3]/button")).click();
         Thread.sleep(3000);
@@ -137,7 +137,7 @@ public class KongaLoginTest {
         //7. Locate the password field and Input your password
         WebElement passwordField = driver.findElement(By.id("password"));
         passwordField.clear();
-        passwordField.sendKeys("@Testify01");
+        passwordField.sendKeys("@Test01");
         //8. Click on the Login button to submit
         driver.findElement(By.xpath("//section/aside/div[2]/div/form/div[3]/button")).click();
         Thread.sleep(3000);
@@ -201,7 +201,7 @@ public class KongaLoginTest {
         //7. Locate the password field and Input your password
         WebElement passwordField = driver.findElement(By.id("password"));
                passwordField.clear();
-               passwordField.sendKeys(*********);
+               passwordField.sendKeys("@Testify01");
         //8. Click on the Login button to submit
         driver.findElement(By.xpath("//section/aside/div[2]/div/form/div[3]/button")).click();
         Thread.sleep(3000);
