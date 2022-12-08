@@ -24,12 +24,10 @@ public class KongaLoginTest {
         Thread.sleep(5000);
 
         //Test 1. Verify that the user has input the right url and is on the right webpage
-        String expectedUrl = "https://konga.com";
+        String expectedUrl = "konga.com";
         if (driver.getCurrentUrl().contains(expectedUrl)) {
-            //pass
             System.out.println("Correct Webpage");
         } else {
-            //fail
             System.out.println("Wrong Webpage");
         }
     }
@@ -43,8 +41,10 @@ public class KongaLoginTest {
         String expectedItemName = "All Categories";
         String actualItemName = pageTitle.getText();
         if (expectedItemName.equals(actualItemName)) {
+            //pass
             System.out.println("Page Title Is Present");
         } else {
+            //fail
             System.out.println("Page Title Not Found");
         }
         pageTitle.getText();
@@ -63,7 +63,7 @@ public class KongaLoginTest {
         String expectedItemName = "Login";
         String actualItemName = pageItemTitle.getText();
         if (expectedItemName.equals(actualItemName)) {
-            System.out.println("Login Screen");
+            System.out.println("Directed to Login Screen");
         } else {
             System.out.println("Not Login Page");
         }
@@ -78,7 +78,7 @@ public class KongaLoginTest {
         //6. Locate the Email Address or Phone Number field and Input your email address
         driver.findElement(By.id("username")).sendKeys("junn@com");
         //7. Locate the password field and Input your password
-        driver.findElement(By.id("password")).sendKeys(" @Test01");
+        driver.findElement(By.id("password")).sendKeys("@Test01");
         //8. Click on the Login button to submit
         driver.findElement(By.xpath("//section/aside/div[2]/div/form/div[3]/button")).click();
         Thread.sleep(3000);
@@ -201,7 +201,7 @@ public class KongaLoginTest {
         //7. Locate the password field and Input your password
         WebElement passwordField = driver.findElement(By.id("password"));
                passwordField.clear();
-               passwordField.sendKeys("@Testify01");
+               passwordField.sendKeys("********");
         //8. Click on the Login button to submit
         driver.findElement(By.xpath("//section/aside/div[2]/div/form/div[3]/button")).click();
         Thread.sleep(3000);
@@ -251,7 +251,7 @@ public class KongaLoginTest {
             System.out.println("Account Info is not present");
         }
 
-        //Click on the searched Item to view its content
+        //Select the searched Item
         searchedItem.getText();
         Thread.sleep(5000);
     }
@@ -261,19 +261,15 @@ public class KongaLoginTest {
 
         WebElement searchedItem = driver.findElement(By.xpath("//div[1]/div/div/div[4]/div/a/span"));
 
-        //Test 9. Verify that the user can log out.
+        //Test 9. Verify that logout button is available and that the user can log out.
         String expectedItemName = "My Account";
         String actualItemName = searchedItem.getText();
         if (expectedItemName.equals(actualItemName)){
-            System.out.println("My Account is clickable");
+            System.out.println("Logout button is available");
         } else {
-            System.out.println("My Account is not clickable");
+            System.out.println("Logout button is not available");
         }
-
-        //Click on the searched Item to view its content
-        searchedItem.click();
         Thread.sleep(5000);
-       // WebElement logoutButton = driver.findElement(By.xpath("//div[1]/div/div/div[4]/div/ul/li[7]/a")).click();
     }
 
     @Test (priority = 9)
